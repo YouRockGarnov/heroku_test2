@@ -3,10 +3,12 @@ from flask import Flask
 app = Flask(__name__)
 
 confirmation_token = '6d75c23e'
+returning = 'hello'
 
 @app.route('/', methods=['POST'])
 def processing():
         #Распаковываем json из пришедшего POST-запроса
+    returning = 'post'
     data = json.loads(request.data)
     #Вконтакте в своих запросах всегда отправляет поле типа
     if 'type' not in data.keys():
@@ -23,4 +25,4 @@ def processing():
 
 @app.route('/')
 def index():
-  return 'hello'
+  return returning
