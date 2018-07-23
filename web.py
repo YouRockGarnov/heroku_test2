@@ -9,6 +9,7 @@ returning = 'hello'
 def processing():
         #Распаковываем json из пришедшего POST-запроса
     returning = 'post'
+    print(request.data)
     data = json.loads(request.data)
     #Вконтакте в своих запросах всегда отправляет поле типа
     if 'type' not in data.keys():
