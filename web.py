@@ -22,7 +22,7 @@ def processing():
     api = vk.API(session, v=5.0)
     uid = data['object']['user_id']
     message = data['object']['body']
-    api.send_message(user_id=481116745, access_token=token, message='heh')
+    api.send_message(user_id='481116745', access_token=token, message='heh')
 
     # Вконтакте в своих запросах всегда отправляет поле типа
     if 'type' not in data.keys():
