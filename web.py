@@ -39,7 +39,7 @@ def processing():
             auth_link = 'https://oauth.vk.com/authorize?client_id={app_id}&scope=photos,audio,video,docs,notes,pages,status,offers,questions,wall,groups,messages,email,notifications,stats,ads,offline,docs,pages,stats,notifications&response_type=token '.format(
                 app_id=228)  # TODO INSERT CORRECT TOKEN
 
-            api.send_message(int(message), token, 'Вашу страницу добавляют для рассылки, для подтверждения этого надо пройти по этой ссылке {0}, скопировать ссылку из адресной строки и отправить мне обратно.'.format(auth_link))
+            api.send_message(int(message), token, 'heh')#'Вашу страницу добавляют для рассылки, для подтверждения этого надо пройти по этой ссылке {0}, скопировать ссылку из адресной строки и отправить мне обратно.'.format(auth_link))
 
             _wait_for_sender.append(message)
 
