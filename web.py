@@ -24,7 +24,7 @@ def processing():
         # Сообщение о том, что обработка прошла успешно
         return 'ok'
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
   return returning
 
