@@ -1,4 +1,5 @@
 from flask import Flask, json, request
+import vk
 
 app = Flask(__name__)
 
