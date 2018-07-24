@@ -15,6 +15,9 @@ def processing():
     data = json.loads(request.data)
     print(data)
 
+    if data['type'] == 'message_typing_state':
+        return 'ok'
+
     session = vk.Session()
     api = vk.API(session, v=5.0)
     uid = data['object']['user_id']
