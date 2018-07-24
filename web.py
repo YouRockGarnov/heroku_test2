@@ -12,7 +12,8 @@ _wait_for_sender = []
 @app.route('/', methods=['POST'])
 def processing():
     data = json.loads(request.data)
-    
+    print(data)
+
     session = vk.Session()
     api = vk.API(session, v=5.0)
     user_id = data['object']['user_id']
