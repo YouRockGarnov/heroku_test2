@@ -9,29 +9,46 @@ token = 'bddeddc0f08b56addc83768d464cea4246ecb5e1b2c9b5df894900aeb84dcec396cc77e
 app_id = 6630979
 _wait_for_sender = []
 
+
 @app.route('/', methods=['POST'])
 def processing():
-        #Распаковываем json из пришедшего POST-запроса
-    returning = 'post'
-    print(request.data)
     data = json.loads(request.data)
-    #Вконтакте в своих запросах всегда отправляет поле типа
+    print(data)
+
+    session = vk.Session()
+    api = vk.API(session, v=5.0)
+    uid = data['object']['user_id']
+    message = data['object']['body']
+
+    # Вконтакте в своих запросах всегда отправляет поле типа
     if 'type' not in data.keys():
         return 'not vk'
     if data['type'] == 'confirmation':
         return confirmation_token
     elif data['type'] == 'message_new':
-        session = vk.Session()
-        api = vk.API(session, v=5.0)
-        uid = int(data['object']['user_id'])
-        api.messages.send(access_token=token, user_id=uid, message='Привет, я новый бот!')
-        # Сообщение о том, что обработка прошла успешно
-        return 'ok'
+
+        if message == 'ok':
+            sender_vkid = uid
+        elif message == 'send me':
+            api.send_message(user_id=481116745, access_token=token, message='lol')
+        else:
+            response = 'Я на отправил запрос к {0}. Необходимо зайти на эту страницу и подтвердить добавление.'.format(
+                message)
+
+            auth_link = 'https://oauth.vk.com/authorize?client_id={app_id}&scope=photos,audio,video,docs,notes,pages,status,offers,questions,wall,groups,messages,email,notifications,stats,ads,offline,docs,pages,stats,notifications&response_type=token '.format(
+                app_id=228)  # TODO INSERT CORRECT TOKEN
+
+            api.send_message(user_id=481116745, access_token=token,
+                             message='heh')  # 'Вашу страницу добавляют для рассылки, для подтверждения этого надо пройти по этой ссылке {0}, скопировать ссылку из адресной строки и отправить мне обратно.'.format(auth_link))
+
+            _wait_for_sender.append(message)
+
 
 @app.route('/', methods=['GET'])
 def index():
-  print('index')
-  return returning
+    print('index')
+    return returning
+
 
 if __name__ == "__main__":
-        app.run()
+    app.run()
