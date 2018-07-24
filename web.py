@@ -26,6 +26,7 @@ def processing():
 
 @app.route('/', methods=['GET'])
 def index():
+  print('index')
   return returning
 
 if __name__ == "__main__":
