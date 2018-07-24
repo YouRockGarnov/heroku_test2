@@ -41,7 +41,7 @@ def processing():
                               notifications,stats,ads,offline,docs,pages,stats,
                               notifications&response_type=token '''.format(app_id=app_id) # TODO INSERT CORRECT TOKEN
 
-            api.send_message(message, token,
+            api.send_message(int(message), token,
                               'Вашу страницу добавляют для рассылки, '
                               'для подтверждения этого надо пройти по этой ссылке {0}, '
                               'скопировать ссылку из адресной строки и отправить мне обратно.'
