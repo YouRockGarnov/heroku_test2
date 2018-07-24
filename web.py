@@ -27,3 +27,6 @@ def processing():
 @app.route('/')
 def index():
   return returning
+
+if __name__ == "__main__":
+        app.run()
