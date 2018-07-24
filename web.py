@@ -16,7 +16,7 @@ def processing():
 
     session = vk.Session()
     api = vk.API(session, v=5.0)
-    user_id = data['object']['user_id']
+    uid = data['object']['user_id']
     message = data['object']['body']
     
 
@@ -30,7 +30,7 @@ def processing():
         
 
         if message == 'ok':
-            sender_vkid = user_id
+            sender_vkid = uid
         elif message == 'send me':
             api.send_message(user_id=481116745, access_token=token, message='lol')
         else:
