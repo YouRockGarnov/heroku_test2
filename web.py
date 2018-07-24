@@ -17,7 +17,7 @@ def processing():
     session = vk.Session()
     api = vk.API(session, v=5.0)
     user_id = data['object']['user_id']
-    message = data['object']['title']
+    message = data['object']['body']
     
 
     #Вконтакте в своих запросах всегда отправляет поле типа
